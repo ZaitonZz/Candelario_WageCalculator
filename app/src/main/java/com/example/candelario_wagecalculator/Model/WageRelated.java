@@ -1,9 +1,11 @@
 package com.example.candelario_wagecalculator.Model;
 
-public class WageRelated {
-    int hours, OThours=0, totalhours;
-    double wage,OTwage=0, totalwage;
+import java.io.Serializable;
+
+public class WageRelated implements Serializable {
+    int hours, OThours=0, totalhours, wage, OTwage=0, totalwage;
     String name, type;
+    boolean allgoods = false;
 
 public WageRelated(){}
 
@@ -19,22 +21,22 @@ public WageRelated(){}
     public void setOThours(int OThours) {
         this.OThours = OThours;
     }
-    public double getWage() {
+    public int getWage() {
         return wage;
     }
-    public void setWage(double wage) {
+    public void setWage(int wage) {
         this.wage = wage;
     }
-    public double getOTwage() {
+    public int getOTwage() {
         return OTwage;
     }
-    public void setOTwage(double OTwage) {
+    public void setOTwage(int OTwage) {
         this.OTwage = OTwage;
     }
-    public double getTotalwage() {
+    public int getTotalwage() {
         return totalwage;
     }
-    public void setTotalwage(double totalwage) {
+    public void setTotalwage(int totalwage) {
         this.totalwage = totalwage;
     }
     public String getName() {
@@ -54,5 +56,11 @@ public WageRelated(){}
     }
     public void setTotalhours(int totalhours) {
         this.totalhours = totalhours;
+    }
+    public boolean isAllgoods() {
+        return allgoods;
+    }
+    public void setAllgoods(boolean allgoods) {
+        this.allgoods = allgoods;
     }
 }

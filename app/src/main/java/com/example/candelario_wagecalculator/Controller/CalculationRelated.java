@@ -9,6 +9,7 @@ import android.view.Display;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.candelario_wagecalculator.Model.WageRelated;
 
@@ -25,9 +26,7 @@ public class CalculationRelated implements Serializable{
             Log.d(TAG, "checkWrong: stop1");
         } else{
             calcWage(hours, type, model);
-            Intent intent = new Intent(context, Display.class);
-            intent.putExtra("calc_class", z);
-            context.startActivity(intent);
+            model.setAllgoods(true);
             Log.d(TAG, "checkWrong: Intent1");
         }
     }
@@ -73,7 +72,7 @@ public class CalculationRelated implements Serializable{
             if (hours>8){
                 model.setOThours(hours-8);
                 model.setWage(800);
-                model.setOTwage(model.getOTwage()*115);
+                model.setOTwage(model.getOThours()*115);
                 model.setTotalwage(model.getWage()+ model.getOTwage());
                 model.setTotalhours(hours);
             } else{
@@ -84,18 +83,18 @@ public class CalculationRelated implements Serializable{
             if (hours>8){
                 model.setOThours(hours-8);
                 model.setWage(720);
-                model.setOTwage(model.getOTwage()*100);
+                model.setOTwage(hours*100);
                 model.setTotalwage(model.getWage()+ model.getOTwage());
                 model.setTotalhours(hours);
             } else{
-                model.setWage(hours * 90);
+                model.setWage(model.getOThours() * 90);
                 model.setTotalwage(model.getWage());
             }
         } else{
             if (hours>8){
                 model.setOThours(hours-8);
                 model.setWage(600);
-                model.setOTwage(model.getOTwage()*90);
+                model.setOTwage(model.getOThours()*90);
                 model.setTotalwage(model.getWage()+ model.getOTwage());
                 model.setTotalhours(hours);
             } else{
@@ -104,8 +103,17 @@ public class CalculationRelated implements Serializable{
             }
         }
     }
-    public void updateUI(){
-        Log.d(TAG, "updateUI: working1");
-        //if (w.getOThours()==0){}
+    public void updateUI(TextView totalwage, TextView regwage, TextView otwage, TextView totalhours, TextView othours){
+        if (w.getOThours()==0){
+            totalhours.setText(Integer.toString(w.getTotalhours()));
+            regwage.setText(Integer.toString(w.getWage()));
+            totalwage.setText(Integer.toString(w.getTotalwage()));
+        } else{
+            totalhours.setText(Integer.toString(w.getTotalhours()));
+            regwage.setText(Integer.toString(w.getWage()));
+            totalwage.setText(Integer.toString(w.getTotalwage()));
+            otwage.setText(Integer.toString(w.getOTwage()));
+            othours.setText(Integer.toString(w.getOThours()));
+        }
     }
 }

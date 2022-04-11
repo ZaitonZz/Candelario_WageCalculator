@@ -3,8 +3,10 @@ package com.example.candelario_wagecalculator.View;
 import androidx.appcompat.app.AppCompatActivity;
 import static android.content.ContentValues.TAG;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -54,6 +56,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         model.setType(Type.getText().toString());
         calc.checkType(model.getType(), wrong2);
         calc.checkWrong(wrong1, wrong2,wrong3, model.getHours(), model.getType(),model,this,calc);
+        if (model.isAllgoods()){
+            Intent intent = new Intent(this, DisplayActivity.class);
+            intent.putExtra("model_class", model);
+            startActivity(intent);
+        }
     }
 
 
