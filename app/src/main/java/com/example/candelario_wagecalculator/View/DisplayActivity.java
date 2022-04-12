@@ -5,6 +5,8 @@ import static android.content.ContentValues.TAG;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.candelario_wagecalculator.Controller.CalculationRelated;
@@ -15,6 +17,7 @@ public class DisplayActivity extends AppCompatActivity {
     WageRelated model;
     CalculationRelated calc;
     TextView totalwage,regwage,otwage,totalhours,othours;
+    Button back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,5 +32,13 @@ public class DisplayActivity extends AppCompatActivity {
         totalhours = findViewById(R.id.total_hours);
         othours = findViewById(R.id.ot_hours);
         calc.updateUI(totalwage,regwage,otwage,totalhours,othours);
+        back= findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(DisplayActivity.this, MainActivity.class));
+            }
+        });
     }
 }
